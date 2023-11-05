@@ -4,7 +4,8 @@ const { Router } = require('express');
 const getDogs = require('../controllers/getDogs')
 const getIdRaza = require('../controllers/getIdRaza')
 const getName = require('../controllers/getName')
-const postDogs = require('../controllers/postDogs')
+const postDogs = require('../controllers/postDogs');
+const getTempe = require('../controllers/getTempe');
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.get('/dogs', getDogs);
 router.get('/dogs/:idRaza', getIdRaza);
 router.get('/name', getName);
 router.post('/dogs', postDogs)
+router.get('/temperaments', getTempe);
 
 
 
