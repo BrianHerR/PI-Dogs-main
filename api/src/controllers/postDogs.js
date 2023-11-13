@@ -1,19 +1,9 @@
 const { Dog, Temperaments } = require('../db')
 
-const postDogs = async (req, res) => {
-    const { image, 
-            name,
-            height_min,
-            height_max,
-            weight_min,
-            weight_max,
-            life_span_min,
-            life_span_max,
-            temperament
-         } = req.body
-    try {
+const postDogs = async ({image, name, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max,
+    temperament}) => {
         if(image&&name&&height_max&&height_min&&weight_max&&weight_min&&life_span_max&&life_span_min&&temperament){
-            const [ dog , creado ] = await Dog.findOrCreate({
+            const [ dogNuevo, create ] = await Dog.findOrCreate({
                 
                 where: { image, 
                     name,
@@ -23,20 +13,14 @@ const postDogs = async (req, res) => {
                     weight_max,
                     life_span_min,
                     life_span_max,
-                    temperament }
-            
-            });
-            if(creado){
-                
-
-                return res.status(200).json('Se agrego correctamente a '+dog.name);}
-        }else{
-            res.status(404).json({message:'Faltan datos'})
-        }
-        
-    } catch (error) {
-        res.status(500).json({message:error})
-    }
-}
-
-module.exports = postDogs;
+                    include: [
+                        {
+                            model: Temperaments,
+                            where: { name: temperament },
+                        }
+                    ]
+                }})
+                if(!create){return `el Dog ${name} ya existe`}
+                else{ return `se creo correctamente ${dogNuevo}`}
+            }}
+module.exports = postDogs
