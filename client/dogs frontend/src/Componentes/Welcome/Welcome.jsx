@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Styles from './Welcome.module.css'
 
 const Welcome = () => {
   return (
-    <div>
+    <div className={Styles.contenedor}>
       
       <h1>Welcome</h1>
 

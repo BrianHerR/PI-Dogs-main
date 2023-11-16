@@ -1,0 +1,11 @@
+.contenedor {
+    padding: 6rem;
+    background-color:rgba(34, 29, 192, 0.624);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    width: 100%;
+   
+ }

@@ -29,8 +29,10 @@ router.get('/dogs/:idRaza', async (req, res) => {
     }
 });
 router.get('/name', async (req, res) => {
+    
     try {
         const { name } = req.query
+      console.log(name)
         const response = await getName(name);
         return res.status(200).json(response);
     } catch (error) {

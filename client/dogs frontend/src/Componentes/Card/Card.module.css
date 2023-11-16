@@ -1,0 +1,7 @@
+.contenedor{
+    border-radius: 49px;
+        background: linear-gradient(45deg, #cacaca, #f0f0f0);
+        box-shadow: 18px -18px 18px #797979,
+            -18px 18px 18px #ffffff;
+
+}
