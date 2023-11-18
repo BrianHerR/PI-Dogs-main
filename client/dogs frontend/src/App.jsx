@@ -2,41 +2,56 @@
 import Detail from '../src/Componentes/Detail/Detail'
 import './App.css'
 import Welcome from './Componentes/Welcome/Welcome'
-import { Routes, Route, useLocation, useNavigate} from 'react-router-dom'
+import { Routes, Route, useLocation, } from 'react-router-dom'
 import Home from '../src/Componentes/Home/Home'
 import Form from '../src/Componentes/Form/Form'
-
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Nav from './Componentes/Nav/Nav'
+import {useSelector , useDispatch} from 'react-redux'
+import { orderDogs, allDogs, allTempe, filterDogs } from './redux/actions_types'
 
 
 function App() {
   
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
 
-  const [dogs, setDogs] = useState([]);
-
-  const [access, setAccess] = useState('false');
-
-  useEffect(()=>{
-    !access && navigate('/');
-  },[access,navigate]);
+  const dogs = useSelector(state => state.dogs);
 
   
 
-    const onClose = (id) =>{
+  useEffect(() => {
+    dispatch(allDogs())
+    dispatch(allTempe())
+  }, [dispatch])
+  
     
-      setDogs((previoEstado)=> previoEstado.filter((dog)=>dog.id !== id));
-    } 
+    const onSearch = async (name) => {
+     
+      try {
+       
+        const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+        
+        const { data } = response;
+        
+        if(data){setDogs(data)}
+        
+  
+        
+      } catch (error) {
+        console.error(error.message);
+        
+      }
+    }
 
   return (
     <div className='App'>
-      {location.pathname !== '/'? <Nav/> : undefined}
+      {location.pathname !== '/'? <Nav onSearch={onSearch}/> : undefined}
 
       <Routes>
         
-        <Route path='/home'  element={<Home onClose={onClose} />}/>
+        <Route path='/home'  element={<Home dogs={dogs} />}/>
         
         <Route path='/detail/:id'  element={<Detail/>}/>
         

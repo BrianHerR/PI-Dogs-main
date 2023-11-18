@@ -1,11 +1,10 @@
-import { GET_ALL_DOGS, GET_TEMPERAMENTS, TEMPERAMENTS, ORDER_BY_NAME, ORDER_BY_WEIGHT, ORIGIN} from './actions_types';
+import { GET_ALL_DOGS, GET_TEMPERAMENTS, ORDER_DOGS, FILTER_DOGS} from './actions_types';
   
   const initialState = {
     dogs: [],
     copyDogs: [],
     temperaments: [],
-    filters: [],
-    order: [],
+    
     
   };
   
@@ -25,38 +24,49 @@ import { GET_ALL_DOGS, GET_TEMPERAMENTS, TEMPERAMENTS, ORDER_BY_NAME, ORDER_BY_W
           temperaments: action.payload,
         };
   
-      case TEMPERAMENTS:
-        const filtrados_tempe = dogs.filter((dog) => dog.temperament === action.payload)
-      return {
-          ...state,
-          filters: filtrados_tempe,
-        };
-      
-      case ORIGIN:
-        const filtrados_origin = copyDogs.filter((dog) => dog !== action.payload)
+      case ORDER_DOGS:
+         
+        const ordenados = [...state.dogs]
+        const { orderBy, orderDirection } = action.payload;
+
+        if (orderBy === 'alfabetica') {
+          ordenados.sort((a, b) => {
+            const nameA = a.name.toUpperCase();
+            const nameB = b.name.toUpperCase();
+
+            return orderDirection === 'asc' ? (nameA > nameB ? 1 : -1) : (nameA > nameB ? -1 : 1);
+          });
+        } else if (orderBy === 'Peso') {
+          ordenados.sort((a, b) => {
+            const weightA = parseInt(a.weight[1]);
+            const weightB = parseInt(b.weight[1]);
+
+            return orderDirection === 'asc' ? weightA - weightB : weightB - weightA;
+          });
+        }
+
         return {
           ...state,
-          filters: filtrados_origin,
-        };
-  
-      case ORDER_BY_NAME:
+          dogs: ordenados,
+        }
+
+        case FILTER_DOGS:
+          const filtrados = [...state.dogs]
+          const {filterby, data} = action.payload
+
+        if(filterby === 'temperamento'){
+          const coincidencias = filtrados.filter((dog)=>dog.temperament.find((tempe)=>tempe===data))
+          filtrados = coincidencias
+        }
+        if(filterby === 'origen'){
+          const coincidencias = filtrados.filter((dog)=>dog.source === data)
+          filtrados = coincidencias
+        }
         return {
           ...state,
-          orderBy: {
-            field: 'name',
-            direction: action.payload,
-          },
-        };
-  
-      case ORDER_BY_WEIGHT:
-        return {
-          ...state,
-          orderBy: {
-            field: 'weight',
-            direction: action.payload,
-          },
-        };
-  
+          dogs: filtrados
+        }
+        
       default:
         return state;
     }

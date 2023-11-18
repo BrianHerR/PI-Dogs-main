@@ -1,35 +1,30 @@
+import axios from 'axios';
+
+
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
-// eslint-disable-next-line
-export const TEMPERAMENTS = "TEMPERAMENTS";
-// eslint-disable-next-line
-export const ORIGIN = "ORIGIN";
-// eslint-disable-next-line
-export const ORDER_BY_NAME = "ORDER_BY_NAME";
-// eslint-disable-next-line
-export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
-// eslint-disable-next-line 
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
-
-export const endpoint = 'http://localhost:3001'
-
-
+export const FILTER_DOGS = "FILTER_DOGS";
+export const ORDER_DOGS = "ORDER_DOGS";
 
 
-export const filterDogs = (filterby, payload) => {
-    
-        return {
-            type: filterby,
-            payload: payload
-        }
-  
+export const endpoint = 'http://localhost:3001';
+
+
+export const filterDogs = (filterBy, payload) => {
+    return {
+        type: FILTER_DOGS,
+        payload: { filterBy, data: payload }
+    };
 }
+
 
 export const orderDogs = (orderBy, orderDirection) => {
     return {
-        type: orderBy,
-        payload: orderDirection
+        type: ORDER_DOGS,
+        payload: { orderBy, orderDirection }
     };
 }
+
 
 export const allDogs = () => {
     return async function (dispatch) {
@@ -38,26 +33,26 @@ export const allDogs = () => {
             dispatch({
                 type: GET_ALL_DOGS,
                 payload: dogs.data
-            })
+            });
         } catch (error) {
-            
             console.error(error);
+            
         }
     }
 }
 
+
 export const allTempe = () => {
     return async function (dispatch) {
         try {
-            const temperaments = await axios.get(`${endpoint}/temperaments}`);
+            const temperaments = await axios.get(`${endpoint}/temperaments`);
             dispatch({
                 type: GET_TEMPERAMENTS,
                 payload: temperaments.data
-            })
+            });
         } catch (error) {
-           
-            console.error(error);
+            console.error( error);
+            
         }
     }
 }
-    

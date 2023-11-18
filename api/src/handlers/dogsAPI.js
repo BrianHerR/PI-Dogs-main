@@ -35,6 +35,7 @@ const dogsAPI = async  () => {
                     life_span_max: life_max,
                     temperament: tempe,
                     image: image,
+                    source: 'api',
                 }
 
                 return dogfinal

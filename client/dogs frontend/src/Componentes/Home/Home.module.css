@@ -1,0 +1,7 @@
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    width: 90%;
+    justify-content: center;
+}

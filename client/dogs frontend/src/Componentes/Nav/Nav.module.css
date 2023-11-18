@@ -1,0 +1,6 @@
+.contenedor{
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: rgb(67, 15, 115);
+    padding: 2rem;
+}

@@ -11,17 +11,15 @@ const Searchbar = ({onSearch}) => {
        
     }
     
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      
-      onSearch(name);
-    };
+  
   
     return (
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={name} onChange={handleChange} />
-        <button type="submit">🔍</button>
-      </form>
+      <div>
+
+        <input type="search" value={name} onChange={handleChange} />
+        <button  onClick={()=>onSearch(name)}>🔍</button>
+      
+      </div>
     );
 }
 

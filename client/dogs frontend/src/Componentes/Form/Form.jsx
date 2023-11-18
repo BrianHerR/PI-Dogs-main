@@ -15,7 +15,7 @@ const Form = () => {
     temperament: []
   });
 
-  const [temperamentos, setTempe] = useState([])
+  const [tempe, setTempe] = useState([])
 
   useEffect(() => {
     const temperamentos = async () => {
