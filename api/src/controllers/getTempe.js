@@ -15,9 +15,20 @@ const getTempe = async () => {
                     return ['No tiene temperamentos'];
                 }
             });
-            const tempeDb = await Temperaments.findAll()
+            tempeApi.forEach( async (tempe) => {
+                try {
+                    await Temperaments.findOrCreate({
+                        where:{
+                            name:tempe
+                        }
+                    })
+                    
+                } catch (error) {
+                    console.error(error)
+                }
+            });
 
-            const allTempe = [...tempeApi, ...tempeDb]
+            const allTempe =  await Temperaments.findAll()
 
             return allTempe; 
         }

@@ -27,27 +27,11 @@ function App() {
   }, [dispatch])
   
     
-    const onSearch = async (name) => {
-     
-      try {
-       
-        const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-        
-        const { data } = response;
-        
-        if(data){setDogs(data)}
-        
   
-        
-      } catch (error) {
-        console.error(error.message);
-        
-      }
-    }
 
   return (
     <div className='App'>
-      {location.pathname !== '/'? <Nav onSearch={onSearch}/> : undefined}
+      {location.pathname !== '/'? <Nav/> : undefined}
 
       <Routes>
         

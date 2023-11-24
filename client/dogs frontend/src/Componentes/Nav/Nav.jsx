@@ -5,22 +5,29 @@ import Styles from '../Nav/Nav.module.css'
 
 
 const Nav = ({onSearch}) => {
+  
+  
   return (
     <div className={Styles.contenedor}>
-    
+    <div className={Styles.nav}>
+
     <Link to='/home'>
-    <button  >Home</button>
+    <button className={Styles.button} >Home</button>
     </Link>
     
     <Link to='/form'>
-    <button>Form</button>
+    <button className={Styles.button}>Form</button>
     </Link>
 
     <Link to='/detail'>
-    <button>Details</button>
+    <button className={Styles.button}>Details</button>
     </Link>
+    </div>
     
+    <div className={Styles.buscador}>
+
     <Searchbar onSearch={onSearch}/>
+    </div>
     
     </div>
   )

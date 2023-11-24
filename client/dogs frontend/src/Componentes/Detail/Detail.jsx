@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Styles from './Detail.module.css'
 
 const Detail = () => {
   
@@ -31,16 +32,25 @@ const Detail = () => {
   },[id])
   
   return (
-    <div>
-      
-      <span>{dog?.id}</span>
+    <div className={Styles.contenedor}>
+
+    <div className={Styles.contenedorPrincipal}>
+      <div className={Styles.image}>
+
+     
       <img src={dog?.image} alt="" />
+      </div>
+      <div className={Styles.detail}>
+
       <h3>{dog?.name}</h3>
       <h4>{`Peso: Entre ${dog?.weight_min} - ${dog?.weight_max} kg`}</h4>
       <h4>{`Altura: Entre ${dog?.height_min} - ${dog?.height_max} cm`}</h4>
       <h4>{`Años de vida: Entre ${dog?.life_span_min} - ${dog?.life_span_max}`}</h4>
       <p>{dog?.temperament?.join(', ')}</p>
+      <span>{dog?.id}</span>
+      </div>
 
+    </div>
     </div>
   )
 }

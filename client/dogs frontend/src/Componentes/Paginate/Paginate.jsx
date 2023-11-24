@@ -1,4 +1,4 @@
-
+import Styles from './Paginate.module.css'
 
 
 const Paginate = ({dogs, dogsByPag, paginado}) => {
@@ -17,15 +17,16 @@ const Paginate = ({dogs, dogsByPag, paginado}) => {
     return(
     <div>
 
-        <nav>
+        <nav className={Styles.nav}>
                 
-            <ul>
+            <ul >
                 { numPagina?.map(num => (
                     <li  onClick={() => paginado(num)} key={num}>
                          <button type="button">{num}</button> 
                     </li>
                 ))}
             </ul>
+            
         </nav>
     </div>
     )

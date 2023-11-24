@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
 
       type: DataTypes.STRING,
 
-      allowNull: false,
+      defaultValue: 'https://www.shutterstock.com/image-photo/portrait-cute-looking-small-dog-260nw-2157126227.jpg'
 
     },
 
@@ -72,11 +72,11 @@ module.exports = (sequelize) => {
       
       allowNull: false,
     },
-    temperament:{
+    source: {
       type: DataTypes.STRING,
-      allowNull: true,
-    }
 
+      defaultValue:'database'
+    }
 
   }, { timestamps: false });
 };

@@ -1,9 +1,79 @@
+.view{
+    width: 100%;
+    height: 100vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+
 .contenedor {
-    padding: 6rem;
+    padding: 10rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 30%;
     align-items: center;
-    width: 100%;
-   
- }
+    width: 50%;
+    background-color: rgb(108, 4, 108);
+    border-radius: 20px;
+    color: #f5f5f5;
+    justify-content: center;
+    
+}
+
+.hueso {
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: #720264;
+    position: relative;
+    right: 1.5px;
+    bottom: 1.2cm;;
+}
+
+.huesoLeft1 {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 50%;
+    width: 10px; 
+    height: 3px;
+    position: relative;
+    top: 0.2cm;
+    right: 1cm;
+}
+.huesoLeft2{
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 50%;
+    width: 10px; 
+    height: 3px;
+    position: relative;
+    top: 1%;
+    right: 1cm;
+}
+.huesoRight1{
+    background-color: #f5f5f5;
+    padding: 14px;
+    border-radius: 50%;
+    width: 8px; 
+    height: 3px;
+    position: relative;
+    bottom: 5.7rem;
+    left: 0.9cm;
+}
+.huesoRight2{
+    background-color: #f5f5f5;
+    padding: 14px;
+    border-radius: 50%;
+    width: 8px; 
+    height: 3px;
+    position: relative;
+    bottom: 5.7rem;
+    left: 0.9cm;
+}

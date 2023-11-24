@@ -9,9 +9,9 @@ const dogsDB = async () => {
             through: { attributes: [] },
           }
     })
-    const allDogs = Dogs.map((dog) => ({ ...dog, source: 'database' }))
+    
 
-    return allDogs;
+    return Dogs;
 }
 
 module.exports = dogsDB;
