@@ -12,7 +12,7 @@ export const endpoint = 'http://localhost:3001';
 
 
 export const filterDogs = (filterBy, payload) => {
-    
+
     return {
         type: FILTER_DOGS,
         payload: { filterBy, data: payload }
@@ -29,16 +29,21 @@ export const orderDogs = (orderBy, orderDirection) => {
 
 
 export const allDogs = () => {
-    return async function (dispatch) {
+    return async (dispatch) => {
         try {
-            const dogs = await axios.get(`${endpoint}/dogs`);
-            dispatch({
+            const response = await axios.get(`${endpoint}/dogs`)
+
+            const { data } = response
+
+            return dispatch({
+
                 type: GET_ALL_DOGS,
-                payload: dogs.data
-            });
+                payload: data
+
+            })
+
         } catch (error) {
-            console.error(error);
-            
+            console.error(error)
         }
     }
 }
@@ -53,8 +58,8 @@ export const allTempe = () => {
                 payload: temperaments.data
             });
         } catch (error) {
-            console.error( error);
-            
+            console.error(error);
+
         }
     }
 }
@@ -68,26 +73,26 @@ export const searchName = (name) => {
                 payload: data
             });
         } catch (error) {
-            console.error( error);
-            
+            console.error(error);
+
         }
     }
 }
 export const postDogs = (inputs) => {
     return async function (dispatch) {
-      try {
-        
-        const response = await axios.post(`${endpoint}/dogs`, inputs);
-        console.log(inputs)
-        const {data} = response
-        
-        
-        dispatch({
-          type: POST,
-          payload: data,
-        });
-      } catch (error) {
-        console.error(error);
-      }
+        try {
+
+            const response = await axios.post(`${endpoint}/dogs`, inputs);
+            console.log(inputs)
+            const { data } = response
+
+
+            dispatch({
+                type: POST,
+                payload: data,
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
-  };
+};

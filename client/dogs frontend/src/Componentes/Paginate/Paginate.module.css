@@ -1,14 +1,28 @@
-.nav{
-    display:flex;
-    gap: 2px;
+.nav {
+  display: flex;
+  gap: 2px;
 }
-ul{
-    display: flex;
-    text-decoration: none;
-    
-    
+ul {
+  display: flex;
+  text-decoration: none;
+}
+.select {
+  background-color: white;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 10px;
+  color: blueviolet;
+  cursor: pointer;
+}
+.select:hover {
+  color: white;
+  background-color: rgba(137, 43, 226, 0.43);
 }
 li {
-    display: flex;
-    text-decoration: none;
+  display: flex;
+  text-decoration: none;
+}
+.currentPage {
+  color: white;
+  background-color: rgba(55, 17, 90, 0.906);
 }

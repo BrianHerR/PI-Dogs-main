@@ -43,7 +43,7 @@ const Form = () => {
     }
     const handleChangeTempe = (Event) => {
 
-      if (inputs.temperament.length > 5) {
+      if (inputs.temperament.length > 4) {
         setErrors({ ...errors, temperament: 'Solo se puede tener un máximo de 5' })
       } else {
         setInputs({ ...inputs, temperament: [...inputs.temperament, Event.target.value] })
@@ -79,15 +79,15 @@ const Form = () => {
 
                 <h3 className={Styles.white}>Años de vida</h3>
 
-                <label className={Styles.white}>Minimo</label>
+                <label className={Styles.white}>Min :</label>
 
-                <input onChange={handleChange} type="text" name='life_span_min' value={inputs.life_span_min} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='life_span_min' value={inputs.life_span_min} />
 
                 {errors.life_span_min && <span className={Styles.errors}>{errors.life_span_min}</span>}
 
-                <label className={Styles.white}>Maxima</label>
+                <label className={Styles.white}>Max: </label>
 
-                <input onChange={handleChange} type="text" name='life_span_max' value={inputs.life_span_max} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='life_span_max' value={inputs.life_span_max} />
 
                 {errors.life_span_max && <span className={Styles.errors}>{errors.life_span_max}</span>}
 
@@ -97,15 +97,15 @@ const Form = () => {
 
                 <h3 className={Styles.white}>Peso</h3>
 
-                <label className={Styles.white}>Minimo</label>
+                <label className={Styles.white}>Min :</label>
 
-                <input onChange={handleChange} type="text" name='weight_min' value={inputs.weight_min} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='weight_min' value={inputs.weight_min} />
 
                 {errors.weight_min && <span className={Styles.errors}>{errors.weight_min}</span>}
 
-                <label className={Styles.white}>Maxima</label>
+                <label className={Styles.white}>Max :</label>
 
-                <input onChange={handleChange} type="text" name='weight_max' value={inputs.weight_max} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='weight_max' value={inputs.weight_max} />
 
                 {errors.weight_max && <span className={Styles.errors}>{errors.weight_max}</span>}
 
@@ -115,15 +115,15 @@ const Form = () => {
 
                 <h3 className={Styles.white}>Altura</h3>
 
-                <label className={Styles.white}>Minimo</label>
+                <label className={Styles.white}>Min :</label>
 
-                <input onChange={handleChange} type="text" name='height_min' value={inputs.height_min} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='height_min' value={inputs.height_min} />
 
                 {errors.height_min && <span className={Styles.errors}>{errors.height_min}</span>}
 
-                <label className={Styles.white}>Maxima</label>
+                <label className={Styles.white}>Max :</label>
 
-                <input onChange={handleChange} type="text" name='height_max' value={inputs.height_max} />
+                <input className={Styles.inputNum} onChange={handleChange} type="text" name='height_max' value={inputs.height_max} />
 
                 {errors.height_max && <span className={Styles.errors}>{errors.height_max}</span>}
 
@@ -150,8 +150,10 @@ const Form = () => {
               </div>
 
 
-
+              <div>
               <button className={Styles.hueso} onClick={handleSumit}>Ingresar</button>
+
+              </div>
 
 
 

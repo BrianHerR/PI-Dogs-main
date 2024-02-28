@@ -52,19 +52,39 @@ import { GET_ALL_DOGS, GET_TEMPERAMENTS, ORDER_DOGS, FILTER_DOGS, SEARCH_NAME, P
         }
 
         case FILTER_DOGS:
+          
           let filtrados = [...state.copyDogs]
+          
           const {filterBy, data} = action.payload
           
-          console.log(data)
+          
           if (filterBy === 'temperamento') {
-            const coincidencias = filtrados.filter((dog) => {
-                return dog.temperament.map((temp) => temp).includes(data);
+            
+            const api = filtrados.filter((dog)=>dog.source === 'api') // Si se identifica como un Dog de la api se aplica el filtrado FilterApi 
+            
+            const filterAPI = api.filter((dog) => {
+                
+              return dog.temperament.map((temp) => temp).includes(data);
             });
-            filtrados = coincidencias;
+            
+            const dataBase = filtrados.filter((dog)=>dog.source === 'database')// Si se identifica como un Dog de la base de datos se aplica FilterDB
+            
+            const filterDB = dataBase.filter((dog)=>{
+              
+              return dog.Temperaments.map((tempe)=>tempe.name).includes(data)
+            
+            })
+            
+            const coincidencias = [...filterAPI, ...filterDB] // Se guardan ambos filtrados para agregarlos al estado global dogs
+
+            filtrados = coincidencias
             
         }
+        
         if(filterBy === 'origen'){
+          
           const coincidencias = filtrados.filter((dog)=>dog.source === data)
+          
           filtrados = coincidencias
         }
         return {

@@ -3,9 +3,12 @@ const getName = require('../controllers/getName')
 
 const routeGetDogs = async (req, res)  => {
     try {
+        
         const { name } = req.query
+        
         if(name){
             const response = await getName(name)
+            
             return res.status(200).json(response);
         }else{
             const response = await getDogs();

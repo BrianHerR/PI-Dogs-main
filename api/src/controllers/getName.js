@@ -14,6 +14,7 @@ const getName = async (name) => {
         const List = allDogs.filter(dog => dog.name.toLowerCase().includes(name.toLowerCase()))
         
        if (List){return List}
+       
        else{return `No se encontro a la raza ${name}`}
     }
     
